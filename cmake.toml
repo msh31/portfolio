@@ -6,8 +6,24 @@ CMAKE_EXPORT_COMPILE_COMMANDS = true
 
 [target.portfolio]
 type = "executable"
-sources = ["main.cpp"]
 compile-features = ["cxx_std_23"]
+sources = [
+    "main.cpp",
+    "vendor/imgui/imgui.cpp",
+    "vendor/imgui/imgui_draw.cpp",
+    "vendor/imgui/imgui_tables.cpp",
+    "vendor/imgui/imgui_widgets.cpp",
+    "vendor/imgui/backends/imgui_impl_glfw.cpp",
+    "vendor/imgui/backends/imgui_impl_opengl3.cpp",
+    "vendor/imgui/imgui_demo.cpp" # temporary!
+]
+include-directories = [
+    "vendor/imgui",
+    "vendor/imgui/backends",
+    "vendor/imgui/examples/libs/emscripten"
+]
+compile-options = ["--use-port=contrib.glfw3"]
+link-options = ["--use-port=contrib.glfw3"]
 cmake-after = """
 add_custom_command(TARGET portfolio POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE_DIR:portfolio>/portfolio.wasm ${CMAKE_SOURCE_DIR}/portfolio.wasm

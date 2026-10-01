@@ -37,6 +37,13 @@ project(portfolio-cpp
 set(portfolio_SOURCES
 	cmake.toml
 	main.cpp
+	"vendor/imgui/backends/imgui_impl_glfw.cpp"
+	"vendor/imgui/backends/imgui_impl_opengl3.cpp"
+	"vendor/imgui/imgui.cpp"
+	"vendor/imgui/imgui_demo.cpp"
+	"vendor/imgui/imgui_draw.cpp"
+	"vendor/imgui/imgui_tables.cpp"
+	"vendor/imgui/imgui_widgets.cpp"
 )
 
 add_executable(portfolio)
@@ -46,6 +53,20 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${portfolio_SOURCES})
 
 target_compile_features(portfolio PRIVATE
 	cxx_std_23
+)
+
+target_compile_options(portfolio PRIVATE
+	--use-port=contrib.glfw3
+)
+
+target_include_directories(portfolio PRIVATE
+	"vendor/imgui"
+	"vendor/imgui/backends"
+	"vendor/imgui/examples/libs/emscripten"
+)
+
+target_link_options(portfolio PRIVATE
+	--use-port=contrib.glfw3
 )
 
 get_directory_property(CMKR_VS_STARTUP_PROJECT DIRECTORY ${PROJECT_SOURCE_DIR} VS_STARTUP_PROJECT)
