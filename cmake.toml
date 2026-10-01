@@ -1,0 +1,16 @@
+[project]
+name = "portfolio-cpp"
+
+[variables]
+CMAKE_EXPORT_COMPILE_COMMANDS = true
+
+[target.portfolio]
+type = "executable"
+sources = ["main.cpp"]
+compile-features = ["cxx_std_23"]
+cmake-after = """
+add_custom_command(TARGET portfolio POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE_DIR:portfolio>/portfolio.wasm ${CMAKE_SOURCE_DIR}/portfolio.wasm
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:portfolio> ${CMAKE_SOURCE_DIR}/portfolio.js
+)
+"""

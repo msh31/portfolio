@@ -1,0 +1,12 @@
+# cmkr
+build*/
+cmake-build*/
+CMakerLists.txt
+CMakeLists.txt.user
+CMakeUserPresets.json
+
+# other
+test/
+compile_commands.json
+*.js
+*.wasm
