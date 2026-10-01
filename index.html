@@ -8,6 +8,9 @@
         <canvas id="canvas" width="800" height="600"></canvas>
         <script>
           var Module = { canvas: document.getElementById("canvas") };
+          document.getElementById("canvas").addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+          })
         </script>
     </body>
 </html>
