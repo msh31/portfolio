@@ -10,3 +10,4 @@ test/
 compile_commands.json
 *.js
 *.wasm
+.clangd
