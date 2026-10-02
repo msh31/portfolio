@@ -107,10 +107,17 @@ auto main( ) -> int {
         ImGui_ImplGlfw_NewFrame( );
         ImGui::NewFrame( );
 
-        {
-            ImGui::Begin( "Hello, world!" );
+        ImGuiWindowFlags window_flags =
+            ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus |
+            ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoBackground;
 
-            ImGui::Text( "Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate );
+        {
+            ImGui::Begin( "#begin", nullptr, window_flags );
+            ImGui::Text( "Marco Hendriks" );
+            ImGui::Separator( );
+
+            // ImGui::Text( "Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate );
             ImGui::End( );
         }
 
