@@ -12,6 +12,7 @@
 
 #ifdef __EMSCRIPTEN__
     #include "vendor/imgui/examples/libs/emscripten/emscripten_mainloop_stub.h"
+    #include <GLFW/emscripten_glfw3.h>
 #endif
 
 constexpr std::string_view g_title_text = "Marco's Portfolio";
@@ -79,6 +80,7 @@ auto main( ) -> int {
     ImGui_ImplGlfw_InitForOpenGL( window, true );
 #ifdef __EMSCRIPTEN__
     ImGui_ImplGlfw_InstallEmscriptenCallbacks( window, "#canvas" );
+    emscripten_glfw_make_canvas_resizable( window, "#portfolio", nullptr );
 #endif
     ImGui_ImplOpenGL3_Init( glsl_version );
 
