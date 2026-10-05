@@ -48,7 +48,9 @@ auto main( ) -> int {
     // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
 #endif
 
-    float main_scale = ImGui_ImplGlfw_GetContentScaleForMonitor( glfwGetPrimaryMonitor( ) ); // Valid on GLFW 3.3+ only
+    // float main_scale = ImGui_ImplGlfw_GetContentScaleForMonitor( glfwGetPrimaryMonitor( ) ); // Valid on GLFW 3.3+
+    // only
+    float main_scale = 1.2f;
     GLFWwindow* window = glfwCreateWindow(
         (int)( 750 * main_scale ), (int)( 800 * main_scale ), g_title_text.data( ), nullptr, nullptr );
     if ( window == nullptr ) return 1;
@@ -113,8 +115,15 @@ auto main( ) -> int {
             ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoBackground;
 
         {
-            ImGui::Begin( "#begin", nullptr, window_flags );
+            ImGui::Begin( "##begin", nullptr, window_flags );
             ImGui::Text( "Marco Hendriks" );
+
+            ImGui::Text( "Software Development student" );
+            ImGui::SameLine( );
+            ImGui::Text( "|" );
+            ImGui::SameLine( );
+            ImGui::TextColored( ImColor( 255, 107, 107 ).Value, "Embedded Programmer" );
+
             ImGui::Separator( );
 
             // ImGui::Text( "Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate );
