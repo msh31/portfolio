@@ -19,7 +19,22 @@
 #include <charconv>
 // clang-format on
 
+constexpr ImVec4 ACCENT_COLOR = ImColor( 255, 107, 107 ).Value;
+constexpr ImVec4 DIM_COLOR = ImColor( 136, 136, 136 ).Value;
+
+// content
 constexpr std::string_view g_title_text = "Marco's Portfolio";
+constexpr std::string_view g_about_text = R"( 
+Since 2013 I have had an interest in hardware, doing things like overclocking components, building PCs and taking them apart to chase high scores in 3DMark.
+
+In 2016 I started with C# WinForms applications and basic scripting. In 2018 I got into game modding and reverse engineering. That's where I learned to use tools like Cheat Engine and IDA Pro.
+
+After finishing my general IT study I made the switch to Software Development because I had been doing that on the side for years and it is where my interests are heading.
+
+My current study covers the basics, but almost everything I know is self-taught, particularly systems programming, reverse engineering, and infrastructure management.
+
+After my graduation I will attend a Mechatronics study @ Hanze to further extend my knowledge and learn about robotics.
+)";
 
 static void glfw_error_callback( int error, const char* description ) {
     fprintf( stderr, "GLFW Error %d: %s\n", error, description );
@@ -127,7 +142,7 @@ auto main( ) -> int {
             ImGui::SameLine( );
             ImGui::Text( "|" );
             ImGui::SameLine( );
-            ImGui::TextColored( ImColor( 255, 107, 107 ).Value, "Embedded Programmer" );
+            ImGui::TextColored( ACCENT_COLOR, "Embedded Programmer" );
 
             ImGui::Text( "Groningen, The Netherlands" );
 
@@ -142,6 +157,10 @@ auto main( ) -> int {
             }
 
             ImGui::Separator( );
+
+            // About
+            ImGui::TextColored( DIM_COLOR, "About Me" );
+            ImGui::TextWrapped( g_about_text.data( ) );
 
             // ImGui::Text( "Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate );
             ImGui::End( );
