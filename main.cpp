@@ -1,3 +1,4 @@
+// clang-format off
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
@@ -14,6 +15,9 @@
     #include "vendor/imgui/examples/libs/emscripten/emscripten_mainloop_stub.h"
     #include <GLFW/emscripten_glfw3.h>
 #endif
+
+#include <charconv>
+// clang-format on
 
 constexpr std::string_view g_title_text = "Marco's Portfolio";
 
@@ -116,6 +120,7 @@ auto main( ) -> int {
 
         {
             ImGui::Begin( "##begin", nullptr, window_flags );
+            // Hero
             ImGui::Text( "Marco Hendriks" );
 
             ImGui::Text( "Software Development student" );
@@ -123,6 +128,18 @@ auto main( ) -> int {
             ImGui::Text( "|" );
             ImGui::SameLine( );
             ImGui::TextColored( ImColor( 255, 107, 107 ).Value, "Embedded Programmer" );
+
+            ImGui::Text( "Groningen, The Netherlands" );
+
+            int tmp = 1;
+            for ( int i{ }; i < 6; i++ ) {
+                if ( i != 0 ) ImGui::SameLine( );
+                tmp += 1;
+                ImGui::PushID( tmp );
+                if ( ImGui::Button( "test" ) ) {
+                }
+                ImGui::PopID( );
+            }
 
             ImGui::Separator( );
 
