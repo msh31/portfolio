@@ -17,6 +17,7 @@
 #endif
 
 #include <charconv>
+#include "childguard.hpp"
 // clang-format on
 
 constexpr ImVec4 ACCENT_COLOR = ImColor( 255, 107, 107 ).Value;
@@ -161,6 +162,14 @@ auto main( ) -> int {
             // About
             ImGui::TextColored( DIM_COLOR, "About Me" );
             ImGui::TextWrapped( g_about_text.data( ) );
+
+            // Experience
+            ImGui::TextColored( DIM_COLOR, "Experience" );
+            {
+                ChildGuard exp1(
+                    "Co-Founder & Developer @ Unnamed Project", { 0.0f, 0.0f },
+                    ImGuiChildFlags_Borders | ImGuiChildFlags_AutoResizeY );
+            }
 
             // ImGui::Text( "Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate );
             ImGui::End( );
